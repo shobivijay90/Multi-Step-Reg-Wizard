@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyledSelect } from "./styles";
+import { ActionMeta } from "react-select";
 
 interface StateSelectProps {
   onChange: (selectedOption: { label: string; value: string } | null) => void;
@@ -7,6 +8,7 @@ interface StateSelectProps {
 }
 
 const StateSelect: React.FC<StateSelectProps> = ({ onChange, value }) => {
+  const [selectedState, setSelectedState] = useState<{ label: string; value: string } | null>(null);
   const options = [
     { value: "AL", label: "Alabama" },
     { value: "AK", label: "Alaska" },
@@ -60,16 +62,26 @@ const StateSelect: React.FC<StateSelectProps> = ({ onChange, value }) => {
     { value: "WY", label: "Wyoming" },
   ];
 
+  const handleSelectChange = (
+    selectedOption: unknown,
+    actionMeta: ActionMeta<unknown>
+  ) => {
+    // Process selectedOption if needed, then call the original onChange function
+    // For example, extracting label and value properties from selectedOption
+    const formattedSelectedOption = selectedOption as { label: string; value: string } | null;
+    onChange(formattedSelectedOption);
+
+  };
   return (
     <StyledSelect
-      id="state"
-      name="state"
-      options={options}
-      onChange={onChange}
-      value={value}
-      isSearchable
-      placeholder="Select a state"
-      required
+    id="state"
+    name="state"
+    options={options}
+    onChange={handleSelectChange}
+    value={value} 
+    isSearchable
+    placeholder="Select a state"
+    required
     />
   );
 };

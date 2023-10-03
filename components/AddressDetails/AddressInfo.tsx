@@ -1,26 +1,29 @@
-import { Styledh2 } from '../GlobalStyles';
-import { StyledForm } from "../GlobalStyles";
-import { StyledLabel } from "../GlobalStyles";
-import { StyledInput } from "../GlobalStyles";
-import { StyledFormRequired } from "../GlobalStyles";
-import { MyButton } from "../GlobalStyles";
-import { StyledButton } from "../GlobalStyles";
+import {
+  Styledh2,
+  StyledButton,
+  StyledForm,
+  StyledLabel,
+  StyledInput,
+  StyledFormRequired,
+  MyButton,
+} from './styles';
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import StateSelect from "./StateSelect";
-import { useFormData } from "../context/FormDataContext";
+import StateSelect from "../StateSelect/StateSelect";
+import { useFormData } from "../../context/FormDataContext";
+import 'styled-jsx/style';
 
 const AddressInfo: React.FC = () => {
   const initialFormData = {
-    firstName: '',
-    lastName: '',
-    age: '',
-    email: '',
-    phoneNumber:'',
-    street: '',
-    city: '',
-    state: '',
-    zipCode: ''
+    firstName: "",
+    lastName: "",
+    age: "",
+    email: "",
+    phoneNumber: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
   };
   const { formData, setFormData } = useFormData();
 
@@ -65,30 +68,43 @@ const AddressInfo: React.FC = () => {
       window.alert("Please enter a valid Zip Code.");
       return;
     }
-    if(!selectedState){
+    if (!selectedState) {
       window.alert("Please select the valid state.");
       return;
     }
-    if (formData.street && formData.city && formData.zipCode && {selectedState}) {
+    if (
+      formData.street &&
+      formData.city &&
+      formData.zipCode && selectedState
+    ) {
       router.push({
         pathname: "/preview",
-        query: { selectedState: selectedState?.value || "" },
+        query: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          age: formData.age,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber,
+          street: formData.street,
+          city: formData.city,
+          state: selectedState.value,
+          zipCode: formData.zipCode,
+        },
       });
     } else {
       window.alert("Please fill in all fields.");
       return;
     }
-
     setFormData({
-      firstName: '',
-      lastName: '',
-      age: '',
-      email: '',
-      phoneNumber:'',
-      street: '',
-      city: '',
-      state: '',
-      zipCode: ''
+      firstName: "",
+      lastName: "",
+      age: "",
+      email: "",
+      phoneNumber: "",
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
     });
   };
 
@@ -98,10 +114,13 @@ const AddressInfo: React.FC = () => {
       <StyledForm>
         <h3>Address Details</h3>
         <div>
-          <StyledLabel>Street <StyledFormRequired>*</StyledFormRequired></StyledLabel>
+          <StyledLabel>
+            Street <StyledFormRequired>*</StyledFormRequired>
+          </StyledLabel>
           <StyledInput
+            id="street"
             type="text"
-            name="address1"
+            name="street"
             value={formData.street}
             onChange={handleChange}
             placeholder="Enter street"
@@ -109,8 +128,11 @@ const AddressInfo: React.FC = () => {
           />
         </div>
         <div>
-          <StyledLabel>City <StyledFormRequired>*</StyledFormRequired></StyledLabel>
+          <StyledLabel>
+            City <StyledFormRequired>*</StyledFormRequired>
+          </StyledLabel>
           <StyledInput
+            id="city"
             type="text"
             name="city"
             value={formData.city}
@@ -120,12 +142,17 @@ const AddressInfo: React.FC = () => {
           />
         </div>
         <div>
-          <StyledLabel>State <StyledFormRequired>*</StyledFormRequired></StyledLabel>
-          <StateSelect onChange={handleSelectChange} value={selectedState}/>
+          <StyledLabel htmlFor="state">
+            State <StyledFormRequired>*</StyledFormRequired>
+          </StyledLabel>
+          <StateSelect onChange={handleSelectChange} value={selectedState} />
         </div>
         <div>
-          <StyledLabel>Zipcode <StyledFormRequired>*</StyledFormRequired></StyledLabel>
+          <StyledLabel>
+            Zipcode <StyledFormRequired>*</StyledFormRequired>
+          </StyledLabel>
           <StyledInput
+            id="zipCode"
             type="text"
             name="zipCode"
             value={formData.zipCode}
@@ -135,7 +162,7 @@ const AddressInfo: React.FC = () => {
           />
         </div>
         <MyButton>
-        <StyledButton type="submit" onClick={resetForm}>
+          <StyledButton type="submit" onClick={resetForm}>
             Reset
           </StyledButton>
           <StyledButton type="submit" onClick={handleGoBack}>

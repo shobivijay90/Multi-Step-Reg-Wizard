@@ -1,5 +1,5 @@
 
-import ContactInfo from '../components/ContactInfo';
+import ContactInfo from "@/components/ContactDetails/ContactInfo";
 
 export default function Home() {
   return <ContactInfo/>;

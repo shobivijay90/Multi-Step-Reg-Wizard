@@ -1,5 +1,6 @@
 
-import AddressInfo from '../components/AddressInfo';
+
+import AddressInfo from '../components/AddressDetails/AddressInfo';
 
 export default function Home() {
   return <AddressInfo/>

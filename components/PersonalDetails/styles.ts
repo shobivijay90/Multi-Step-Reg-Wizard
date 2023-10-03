@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from '@emotion/styled';
 
 export const StyledForm = styled.form`
   max-width: 400px;
@@ -12,6 +12,7 @@ export const StyledForm = styled.form`
 export const Styledh2 = styled.h2`
   text-align: center;
 `;
+
 
 export const StyledLabel = styled.label`
   font-weight: bold;
@@ -52,39 +53,4 @@ export const MyButton = styled.div`
 export const StyledFormRequired = styled.span`
     font-size: smaller;
     color: red; 
-`;
-
-export const StyledFlex = styled.div`
-  div {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-`;
-
-export const SuccessMessage = styled.h2`
-text-align: center;
-  font-size: 2rem;
-  color: #28a745;
-  animation: fadeIn 1s ease;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 `;

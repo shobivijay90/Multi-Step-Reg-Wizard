@@ -1,6 +1,5 @@
 
-import Submit from '../components/Submit';
-
+import Submit from "@/components/Submit/Submit"
 export default function Home() {
   return <Submit/>
 }

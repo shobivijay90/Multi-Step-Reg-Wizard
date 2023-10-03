@@ -9,22 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@types/styled-components": "^5.1.28",
-    "next": "latest",
+    "next": "^13.5.3",
     "react": "latest",
     "react-dom": "latest",
     "react-select": "^5.7.5",
-    "styled-components": "^6.0.8"
+    "styled-components": "^6.0.8",
+    "styled-jsx": "^5.1.2",
+    "styled-jsx-plugin-sass": "^1.0.0",
+    "webpack": "^5.88.2"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "webpack-cli": "^5.1.4"
   }
 }

@@ -1,13 +1,17 @@
+import {
+  Styledh2,
+  StyledButton,
+  StyledForm,
+  StyledLabel,
+  StyledInput,
+  StyledFormRequired,
+  MyButton,
+} from "./styles";
 import React, { useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/router";
-import { useFormData } from "../context/FormDataContext";
-import { Styledh2 } from "../GlobalStyles";
-import { StyledForm } from "../GlobalStyles";
-import { StyledLabel } from "../GlobalStyles";
-import { StyledInput } from "../GlobalStyles";
-import { StyledFormRequired } from "../GlobalStyles";
-import { MyButton } from "../GlobalStyles";
-import { StyledButton } from "../GlobalStyles";
+import { useFormData } from "../../context/FormDataContext";
+import 'styled-jsx/style';
+
 
 const PersonalInfo: React.FC = () => {
   const initialFormData = {
@@ -16,7 +20,7 @@ const PersonalInfo: React.FC = () => {
     age: '',
     email: "",
     phoneNumber: "",
-    address1: "",
+    street: "",
     city: "",
     state: "",
     zipCode: "",

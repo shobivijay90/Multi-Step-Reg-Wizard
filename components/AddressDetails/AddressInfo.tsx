@@ -7,7 +7,7 @@ import {
   StyledFormRequired,
   MyButton,
 } from './styles';
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import StateSelect from "../StateSelect/StateSelect";
 import { useFormData } from "../../context/FormDataContext";
@@ -32,7 +32,6 @@ const AddressInfo: React.FC = () => {
 
   const { selectedState, setSelectedState } = useStateSelect();
 
-  const memoizedSelectedState = useMemo(() => selectedState, [selectedState]);
 
   const handleSelectChange = (
     selectedState: { label: string; value: string } | null

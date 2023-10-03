@@ -7,10 +7,11 @@ import {
   StyledFormRequired,
   MyButton,
 } from './styles';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import StateSelect from "../StateSelect/StateSelect";
 import { useFormData } from "../../context/FormDataContext";
+import { useStateSelect } from '@/context/StateSelectContext';
 import 'styled-jsx/style';
 
 const AddressInfo: React.FC = () => {
@@ -29,23 +30,23 @@ const AddressInfo: React.FC = () => {
 
   const router = useRouter();
 
-  const [selectedState, setSelectedState] = useState<{
-    label: string;
-    value: string;
-  } | null>(null);
+  const { selectedState, setSelectedState } = useStateSelect();
+
+  const memoizedSelectedState = useMemo(() => selectedState, [selectedState]);
 
   const handleSelectChange = (
     selectedState: { label: string; value: string } | null
   ) => {
     setSelectedState(selectedState);
-  };
 
-  useEffect(() => {
+  };
+useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
     }
   }, [setFormData]);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -114,7 +115,7 @@ const AddressInfo: React.FC = () => {
       <StyledForm>
         <h3>Address Details</h3>
         <div>
-          <StyledLabel>
+          <StyledLabel htmlFor='street'>
             Street <StyledFormRequired>*</StyledFormRequired>
           </StyledLabel>
           <StyledInput
@@ -128,7 +129,7 @@ const AddressInfo: React.FC = () => {
           />
         </div>
         <div>
-          <StyledLabel>
+          <StyledLabel htmlFor='city'>
             City <StyledFormRequired>*</StyledFormRequired>
           </StyledLabel>
           <StyledInput
@@ -145,10 +146,10 @@ const AddressInfo: React.FC = () => {
           <StyledLabel htmlFor="state">
             State <StyledFormRequired>*</StyledFormRequired>
           </StyledLabel>
-          <StateSelect onChange={handleSelectChange} value={selectedState} />
+          <StateSelect onChange={handleSelectChange} selectedState={selectedState} setSelectedState={setSelectedState} />
         </div>
         <div>
-          <StyledLabel>
+          <StyledLabel htmlFor='zipCode'>
             Zipcode <StyledFormRequired>*</StyledFormRequired>
           </StyledLabel>
           <StyledInput

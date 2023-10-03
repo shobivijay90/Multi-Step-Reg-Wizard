@@ -4,11 +4,17 @@ import { ActionMeta } from "react-select";
 
 interface StateSelectProps {
   onChange: (selectedOption: { label: string; value: string } | null) => void;
-  value: { label: string; value: string } | null;
+  selectedState: { label: string; value: string } | null;
+  setSelectedState: React.Dispatch<React.SetStateAction<{ label: string; value: string } | null>>;
 }
 
-const StateSelect: React.FC<StateSelectProps> = ({ onChange, value }) => {
-  const [selectedState, setSelectedState] = useState<{ label: string; value: string } | null>(null);
+const StateSelect: React.FC<StateSelectProps> = ({ onChange, selectedState, setSelectedState }) => {
+  const [localSelectedState, setLocalSelectedState] = useState<{ label: string; value: string } | null>(null);
+
+  useEffect(() => {
+    setLocalSelectedState(selectedState);
+  }, [selectedState]);
+
   const options = [
     { value: "AL", label: "Alabama" },
     { value: "AK", label: "Alaska" },
@@ -69,6 +75,7 @@ const StateSelect: React.FC<StateSelectProps> = ({ onChange, value }) => {
     // Process selectedOption if needed, then call the original onChange function
     // For example, extracting label and value properties from selectedOption
     const formattedSelectedOption = selectedOption as { label: string; value: string } | null;
+    setSelectedState(formattedSelectedOption)
     onChange(formattedSelectedOption);
 
   };
@@ -78,7 +85,7 @@ const StateSelect: React.FC<StateSelectProps> = ({ onChange, value }) => {
     name="state"
     options={options}
     onChange={handleSelectChange}
-    value={value} 
+    value={localSelectedState} 
     isSearchable
     placeholder="Select a state"
     required

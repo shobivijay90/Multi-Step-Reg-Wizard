@@ -12,7 +12,7 @@ import 'styled-jsx/style';
 const Preview = () => {
   const router = useRouter();
 
-  const { firstName, lastName, age, email, phoneNumber, street, city,state, zipCode } = router.query;
+  const { firstName, lastName, age, email, phoneNumber, street, city, state, zipCode } = router.query;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

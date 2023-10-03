@@ -7,7 +7,6 @@ import {
 } from "./styles";
 import React from "react";
 import { useRouter } from "next/router";
-//import { useFormData } from "../../context/FormDataContext";
 import 'styled-jsx/style';
 
 const Preview = () => {
